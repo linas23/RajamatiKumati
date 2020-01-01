@@ -3,14 +3,15 @@ import VueRouter from 'vue-router'
 import homepage from '@/components/homepage'
 import signup from '@/components/auth/signup'
 import login from '@/components/auth/login'
+import profile from '@/components/profile'
 Vue.use(VueRouter)
 
 const routes = [
 
   {path:'/',name:'homepage',component:homepage},
   {path:'/signup',name:'signup',component:signup},
-  {path:'/login',name:'login',component:login}
-
+  {path:'/login',name:'login',component:login},
+  {path:'/profile',name:'profile',component:profile}
   
 ];
 

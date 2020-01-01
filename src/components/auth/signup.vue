@@ -21,18 +21,19 @@
                     <form @submit.prevent="signup">
                         <i class="material-icons">email</i>
                         <div class="input-field inline">
-                            <input id="email" type="email" placeholder="enter email">
+                            <input id="email" type="email" placeholder="enter email" v-model="email">
                         </div>
                         <br>
                         <i class="material-icons">lock</i>
                         <div class="input-field inline">
-                            <input id="password" type="password" placeholder="enter password">
+                            <input id="password" type="password" placeholder="enter password" v-model="password">
                         </div>
                         <br>
                         <i class="material-icons">person</i>
                         <div class="input-field inline">
-                            <input id="text" type="text" placeholder="enter username">
+                            <input id="text" type="text" placeholder="enter username" v-model="username">
                         </div>
+                        <p v-if="feedback" v-html="feedback"></p>
                         <div class="card-actions">
                             <button class="btn blue darken-2 black-text" type="submit">
                                 sign up
@@ -43,6 +44,38 @@
          </div>
     </div>
 </template>
+
+<script>
+    /* eslint-disable no-console */
+import{auth} from '@/firebase/init'
+export default {
+    data(){
+        return{
+            email:'',
+            password:'',
+            username:'',
+            feedback:null
+        }
+    },
+    methods:{
+        signup(){
+            console.log('signing in');
+            console.log(this.email,this.password,this.username)
+            auth.createUserWithEmailAndPassword(this.email,this.password)
+            .then(()=>{
+                console.log('signed in successfully');
+                this.$router.push({name:'login',params:{email:this.email,username:this.username}});
+            })
+            .catch(err=>{
+                this.feedback=err;
+                console.log('error is ', err);
+            })
+        }
+    }
+}
+</script>
+
+
 
 <style lang="scss">
 .signup{

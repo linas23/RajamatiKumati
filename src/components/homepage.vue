@@ -2,32 +2,27 @@
     <div class="homepage" v-if="showhomepage">
         <div class="top">
         <div class="right">
-            <div class="card teal ">
+            <div class="card ">
                 <div class="card-title center">
                     Log In to <br>
                     Rajamati Kumati
                 </div>
                 <div class="center red-text card-content">
-                    <form @submit.prevent="signup">
+                    <form @submit.prevent="logmein">
                         <i class="material-icons">email</i>
                         <div class="input-field inline">
-                            <input id="email" type="email" class="validate">
-                            <label for="email">email</label>  
+                            <input id="email" type="email" v-model="email"  placeholder="enter email">
+                            <!-- <label for="email">email</label>   -->
                         </div>
                         <br>
                         <i class="material-icons">lock</i>
                         <div class="input-field inline">
-                            <input id="password" type="password" class="validate">
-                            <label for="password">password</label>
+                            <input id="password" type="password" v-model="password" placeholder="enter password" >
+                            <!-- <label for="password">password</label> -->
                         </div>
-                        <br>
-                        <!-- <i class="material-icons">person</i>
-                        <div class="input-field inline">
-                            <input id="text" type="text" class="validate">
-                            <label for="username">username</label>
-                        </div> -->
+                        <p v-if="feedback" v-html="feedback"></p>
                         <div class="card-actions">
-                            <button class="btn blue darken-2 black-text" @click="logmein">
+                            <button class="btn blue darken-2 black-text" type="submit">
                                 Login
                             </button>
                         </div>
@@ -79,13 +74,15 @@
 </template>
 <script>
 /* eslint-disable no-console */
+import {auth} from '@/firebase/init'
 export default {
     data(){
         return{
             showhomepage:true,
             email:'',
-            username:'',
-            // password:'',
+            // username:'',
+            password:'',
+            feedback:'',
             links:[
                 {
                     icon:"fab fa-4x fa-facebook",
@@ -105,8 +102,16 @@ export default {
             this.$router.push("/signup");
         },
         logmein(){
-            this.showhomepage=false;
-            console.log('logging user in')
+            console.log('loggin you in')
+            auth.signInWithEmailAndPassword(this.email,this.password)
+            .then(()=>{
+                console.log('logged in successfully');
+                this.$router.push({name:'profile',params:{username:this.username}});
+            })
+            .catch(err=>{
+                console.log(err);
+                this.feedback=err;
+            })
         }
     }
 }
@@ -134,6 +139,7 @@ export default {
         .card{
             margin: 0px;
             height: 550px;
+            box-shadow: 0px 0px 20px black;
             .card-title{
                 padding: 20px;
                 font-size: 2.3rem;
