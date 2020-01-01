@@ -2,7 +2,7 @@
   <div>
       <!-- <compHeader></compHeader> -->
       <!-- <compFooter></compFooter> -->
-      <homepage/>
+      <!-- <homepage/> -->
           <router-view/>
 
   </div>
@@ -11,7 +11,7 @@
 <script>
 // import compHeader from '@/components/header_footer/header'
 // import compFooter from '@/components/header_footer/footer'
-import homepage from '@/components/homepage.vue'
+// import homepage from '@/components/homepage.vue'
 export default {
   data(){
     return{
@@ -21,7 +21,7 @@ export default {
   components:{
       // compHeader,
       // compFooter  
-      homepage  
+      // homepage  
   }
 }
 </script>
