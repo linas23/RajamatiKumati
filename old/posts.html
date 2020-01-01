@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Posts</title>
+    <script src="js/vue.js"></script>
+    <script src="https://kit.fontawesome.com/427e69b628.js"></script>
+    <style>
+        body{
+            background: linear-gradient(90deg, rgba(10,1,22,1) 30%, rgba(139,19,19,1) 82%);
+        }
+    </style>
+    <link rel="stylesheet" href="posts.css">
+</head>
+<body>
+    <div id="app">
+        <div class="post">
+            <div v-if="postbtn">
+                <button @click="show" class="postbutton">Post</button>
+            </div>
+            <div class="form" v-if="showform">
+                <textarea name="caption" id="caption" cols="30" rows="5"></textarea>
+                <div class="fileupload">
+                    <input type="file" name="fileupload" accept="image/*">
+                </div>
+                <button type="submit">Done</button>
+                <button @click="removeform">Cancel</button>
+            </div>
+        </div>
+        <hr>
+        <div class="main">
+            <div class="relatedposts">
+                <ul>
+                    <li>
+                        <a href="" class="directlinks">
+                        <div class="title">
+                            Gaijatra in it's peak state
+                        </div>
+                        <div class="images">
+                            <img src="images/man-wearing-face-mask-in-gaijatra-in-nepal-DHTG1K.jpg" alt="">
+                        </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="directlinks">
+                        <div class="title">
+                            Lakhey Pyakha (The Devil's Dance)
+                        </div>
+                        <div class="images">
+                            <img src="https://i2.wp.com/www.ashesh.com.np/wp-content/uploads/2018/08/Gaijatra-Bhaktapur.jpg?resize=640%2C400&ssl=1" alt="">
+                        </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="directlinks">
+                        <div class="title">
+                            Indra Jatra at kathmandu
+                        </div>
+                        <div class="images">
+                            <img src="https://gallery.thelongestwayhome.com/img/s4/v66/p1506518734-3.jpg" alt="">
+                        </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="directlinks">
+                        <div class="title">
+                             Shivaratri Jay Shambhoooo
+                        </div>
+                        <div class="images">
+                            <img src="https://img.traveltriangle.com/blog/wp-content/tr:w-700,h-400/uploads/2017/10/mahashiratri-nepal-kb6592.jpg" alt="">
+                        </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="directlinks">
+                        <div class="title">
+                            Vaitika 
+                        </div>
+                        <div class="images">
+                            <img src="https://trekroute.com/wp-content/uploads/2015/06/Mha-Puja-festivals-in-Nepal.jpg" alt="">
+                        </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="posts">
+                <ul>
+                    <li>
+                        <div class="person">
+                            <div class="profile">
+                                <!-- <img src="" alt="profile img" class="profile-img">  -->
+                                <i class="fas fa-user-astronaut"></i> <span class="name">linas 23</span>
+                                <div class="date">2076/11/23 5:55 AM</div>
+                            </div>
+                        </div>
+                        <div class="caption">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ea consequuntur?
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ea consequuntur?
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ea consequuntur?
+                        </div>
+                        <div class="images">
+                            <img src="images/4944777704_c916d7d65b_b.jpg" alt="">
+                        </div>
+                        <div class="option">
+                                <i class="far fa-star"><span> 123</span></i>  
+                                <i class="far fa-comment-dots"><span> 33 comments</span></i>
+                                <i class="fas fa-share-alt"><span> 23 shares</span></i>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="person">
+                            <div class="profile">
+                                <!-- <img src="" alt="profile img" class="profile-img">  -->
+                                <i class="fas fa-user-astronaut"></i> <span class="name">linas 23</span>
+                                <div class="date">2076/11/23 5:55 AM</div>
+                            </div>
+                        </div>
+                        <div class="caption">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ea consequuntur?
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ea consequuntur?
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ea consequuntur?
+                        </div>
+                        <div class="images">
+                            <img src="images/man-wearing-face-mask-in-gaijatra-in-nepal-DHTG1K.jpg" alt="">
+                        </div>
+                        <div class="option">
+                                <i class="far fa-star"><span> 123</span></i>  
+                                <i class="far fa-comment-dots"><span> 33 comments</span></i>
+                                <i class="fas fa-share-alt"><span> 23 shares</span></i>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="person">
+                            <div class="profile">
+                                <!-- <img src="" alt="profile img" class="profile-img">  -->
+                                <i class="fas fa-user-astronaut"></i> <span class="name">linas 23</span>
+                                <div class="date">2076/11/23 5:55 AM</div>
+                            </div>
+                        </div>
+                        <div class="caption">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ea consequuntur?
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ea consequuntur?
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ea consequuntur?
+                        </div>
+                        <div class="images">
+                            <img src="images/Bisket-Jatra-festival-of-nepal.jpg" alt="">
+                        </div>
+                        <div class="option">
+                                <i class="far fa-star"><span> 123</span></i>  
+                                <i class="far fa-comment-dots"><span> 33 comments</span></i>
+                                <i class="fas fa-share-alt"><span> 23 shares</span></i>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="person">
+                            <div class="profile">
+                                <!-- <img src="" alt="profile img" class="profile-img">  -->
+                                <i class="fas fa-user-astronaut"></i> <span class="name">linas 23</span>
+                                <div class="date">2076/11/23 5:55 AM</div>
+                            </div>
+                        </div>
+                        <div class="caption">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ea consequuntur?
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ea consequuntur?
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ea consequuntur?
+                        </div>
+                        <div class="images">
+                            <img src="https://1hu9t72zwflj44abyp2h0pfe-wpengine.netdna-ssl.com/wp-content/uploads/2019/04/Chariot-of-Lord-Bhairav-Bisket-Jatra.jpg" alt="">
+                        </div>
+                        <div class="option">
+                                <i class="far fa-star"><span> 123</span></i>  
+                                <i class="far fa-comment-dots"><span> 33 comments</span></i>
+                                <i class="fas fa-share-alt"><span> 23 shares</span></i>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="person">
+                            <div class="profile">
+                                <!-- <img src="" alt="profile img" class="profile-img">  -->
+                                <i class="fas fa-user-astronaut"></i> <span class="name">linas 23</span>
+                                <div class="date">2076/11/23 5:55 AM</div>
+                            </div>
+                        </div>
+                        <div class="caption">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ea consequuntur?
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ea consequuntur?
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ea consequuntur?
+                        </div>
+                        <div class="images">
+                            <img src="images/Bisket.jpg" alt="">
+                        </div>
+                        <div class="option">
+                                <i class="far fa-star"><span> 123</span></i>  
+                                <i class="far fa-comment-dots"><span> 33 comments</span></i>
+                                <i class="fas fa-share-alt"><span> 23 shares</span></i>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="person">
+                            <div class="profile">
+                                <!-- <img src="" alt="profile img" class="profile-img">  -->
+                                <i class="fas fa-user-astronaut"></i> <span class="name">linas 23</span>
+                                <div class="date">2076/11/23 5:55 AM</div>
+                            </div>
+                        </div>
+                        <div class="caption">
+                                Large crowds of devotees and revellers throng the historic city of Bhaktapur, at Taumadhi and Yasinkhel, to observe Biska Jatra,
+                                 the festival that is celebrated for nine days every year.
+                                 <a href="https://thehimalayantimes.com/kathmandu/biska-jatra-celebrated-with-fervour/">Read More...</a>
+                        </div>
+                        <div class="images">
+                            <img src="http://1hu9t72zwflj44abyp2h0pfe-wpengine.netdna-ssl.com/wp-content/uploads/2018/04/Bisket-jatra.jpg" alt="">
+                        </div>
+                        <div class="option">
+                                <i class="far fa-star"><span> 123</span></i>  
+                                <i class="far fa-comment-dots"><span> 33 comments</span></i>
+                                <i class="fas fa-share-alt"><span> 23 shares</span></i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="business">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <div class="title">
+                                Hello world cafe
+                            </div>
+                            <div class="images">
+                                <img src="http://haldanemartin.co.za/wp-content/uploads/2017/07/28393A56@4FA10C77.BBCB6659-1100x714.png" alt="">
+                            </div>
+                            <div class="address">
+                                <button>Show More</button>
+                                <button>In Google Maps</button>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="title">
+                                Tourist Destination
+                            </div>
+                            <div class="images">
+                                <img src="https://eatbook.sg/wp-content/uploads/2018/09/Beautiful-Cafes-Twenty-Eight-Cafe-Ambience-820x1024.jpg" alt="">
+                            </div>
+                            <div class="address">
+                                <button>Show More</button>
+                                <button>In Google Maps</button>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="title">
+                                Local Handicrafts
+                            </div>
+                            <div class="images">
+                                <img src="https://rmgbd.net/wp-content/uploads/2019/04/639291-handicraft.jpg" alt="">
+                            </div>
+                            <div class="address">
+                                <button>Show More</button>
+                                <button>In Google Maps</button>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="title">
+                                Welcome to Nepal
+                            </div>
+                            <div class="images">
+                                <img src="https://live.staticflickr.com/692/23646454362_25aafccd56_b.jpg" alt="">
+                            </div>
+                            <div class="address">
+                                <button>Show More</button>
+                                <button>In Google Maps</button>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="posts.js"></script>
+
+</html>

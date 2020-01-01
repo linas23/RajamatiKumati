@@ -1,0 +1,142 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.post{
+    margin: 23px auto;
+    width: 75%;
+}
+.postbutton{
+    height: 30px;
+    width: 100px;
+    background: white;
+    border: none;
+}
+.form button{
+    height: 30px;
+    width: 100px;
+    background: white;
+    border: none;
+    margin-top: 10px;
+}
+.fileupload{
+    margin-top: 10px;
+}
+.main{
+    margin: 10px auto;
+    color: white;
+    display: grid;
+    grid-template-columns: 250px 1fr 250px;
+    grid-template-areas: 'relatedposts posts business';
+}
+.relatedposts{
+    width: 100%;
+    grid-area: 'relatedposts';
+}
+.relatedposts li{
+    display: block;
+    padding: 10px;
+    width: 100%;
+    height: auto;
+    /* background: blue; */
+    margin:0px 5px 5px 5px;
+    border: 1px solid white;
+}
+.relatedposts li .images img{
+    width: 100%;
+    height: 100%;
+}
+.relatedposts li a{
+    text-decoration: none;
+    color: white;
+}
+.relatedposts li a .title{
+    margin-bottom: 10px;
+}
+.posts{
+    grid-area: 'posts';
+    text-align: left;
+    max-width: 100%;
+    margin:0px 0px 0px 30px;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+    overflow: hidden;
+}
+.posts li{
+    width: 100%;
+    /* background: white; */
+    /* color: black; */
+    padding: 30px 50px;
+    margin: 0px 0px;
+    border-top: 1px solid whitesmoke;
+    border-bottom: 1px solid whitesmoke;
+    list-style: none;
+}
+.posts .caption{
+    margin: 20px 0px;
+    width: 85%;
+    font-size: 1.1rem;
+    text-align: justify;
+}
+.posts .images{
+    width: 85%;
+    margin-bottom: 10px;
+}
+.posts .images img{
+    width: 100%;
+    height: 100%;
+}
+.posts .option{
+    margin: 0px auto;
+    width: 50%;
+}
+.posts .option i{
+    padding-right: 20px;
+}
+.posts .option i span{
+    font-size: 1.1rem;
+}
+.business{
+    grid-area: 'business';
+    max-width: 100%;
+    overflow: hidden;
+}
+.business li{
+    list-style-type: none;
+    display: block;
+    height: auto;
+    width: 100%;
+    /* background: coral; */
+    border: 1px solid white;
+}
+.business li a{
+    text-decoration: none;
+    color: white;
+    /* padding: 10px; */
+}
+.business li a .images img{
+    height: 100%;
+    width: 100%;
+}
+.business li a .address {
+    text-align: center;
+}
+.business li a .address button {
+    padding: 5px;
+    margin-bottom: 5px;
+    background:darkcyan;
+    border: none;
+    color: white;
+    /* width: 100px; */
+}
+.business li a .title{
+    padding:10px;
+}
+.business li a .images{
+    padding: 0px 10px 5px 10px;
+}
+
+/* img{
+    height: 300px;
+    width: 420px;
+} */

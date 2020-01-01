@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+    <link rel="stylesheet" href="index2.css">
+    <script src="https://kit.fontawesome.com/427e69b628.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="main">
+            <div class="nav">
+                <div class="navbar-brand">
+                    <a href="#">{{navbarBrand}}</a>
+                </div>
+                <div>
+                    <ul class="nav-items">
+                        <li v-for="link in links" >
+                            <a v-bind:href="link.navlinks">{{links.navitems}}</a>
+                        </li>
+                        <!-- <li><a href="#">Home</a></li>
+                        <li><a href="#">Posts</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Gallery</a></li>
+                        <li><a href="#">You</a></li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="home">
+                <div class="primary">
+                    <div class="left">
+                        <div class="heading">
+                            <h1>{{heading}}</h1>
+                        </div>
+                        <div class="details">
+                            <p>
+                            {{details}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="image-section">
+                            <img src="images/Gaijatra-2073-Bhaktapur-7.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="subscriber" v-if="subscribeform">
+                    <div class="subheading">
+                        {{subheading}}
+                    </div>
+                    <div class="subform">
+                       Email address: <input type="text" name="email" ><br>
+                        <button type="submit">Submit</button>
+                        <button @click="showsubscribe">Close</button>
+                    </div>
+                </div>
+            </div>
+            <div class="featured">
+                <div class="head">
+                    <h2>Some of the featured posts of the week</h2>
+                </div>
+                    <ul class="lists">
+                        <li>
+                            <div class="title">
+                                A brief on bisket jatra
+                            </div>
+                            <div class="person">
+                                By linas <span class="date">1999/12/15</span>
+                            </div>
+                            <div class="image">
+                                <img src="images/Bisket-Jatra-festival-of-nepal.jpg" alt="">
+                            </div>
+                            <div class="caption">
+                                This is 8 night and 9 days festival celebrated in bhaktapur as 
+                                as message to convey the people the upcoming new year. This is one of
+                                the most popular jatra in bhaktapur. Thousands of people seems to be excited 
+                                to be a part of this jatra.
+                            </div>
+                        </li>
+                        <li>
+                            <div class="title">
+                                    Gai Jatra
+                            </div>
+                            <div class="person">
+                                By linas <span class="date">1999/12/15</span>
+                            </div>
+                            <div class="image">
+                                <img src="images/gai-jatra-in-nepal-6.jpg" alt="">
+                            </div>
+                            <div class="caption">
+                                    Gai Jatra, (gāi means cow and jātrā means festival in Nepali: गाई जात्रा, and Nepal Bhasa: सा पारु) is a festival celebrated in Nepal, mainly in Kathmandu
+                                     valley by the Newar community.[1] The festival is generally
+                                    [Bhadra (Hindu calendar)|Bhadra] )August–September). The date is set according to the lunar Nepafalls on the first day of
+                                     the dark four night of the month of [Gunla].
+                            </div>
+                        </li>
+                        <li>
+                            <div class="title">
+                                Bhaktapur
+                            </div>
+                            <div class="person">
+                                By linas <span class="date">1999/12/15</span>
+                            </div>
+                            <div class="image">
+                                <img src="images/man-wearing-face-mask-in-gaijatra-in-nepal-DHTG1K.jpg" alt="">
+                            </div>
+                            <div class="caption">
+                                    Bhaktapur is said to have the most enjoyable and exciting Gai Jatra, as it has its own peculiarities in the ways the festival is celebrated as compared 
+                                    to Lalitpur and Kathmandu. A chariot (known as Taha-Macha) made of bamboo wrapped in cloth, with a photo of the dead person hung at the center, is navigated
+                                     through a predefined street by the family along with localities. So a long parade of chariots is seen.
+                                    The Taha-Macha symbolize dead people and is decorated with their possessions 
+                            </div>
+                        </li>      
+                    </ul>
+            </div>
+            <div class="footer">
+                <div class="brand">
+                    &copy 2019 linas
+                </div>
+                <ul class="misc">
+                    <li>Terms of service</li>
+                    <li>About Us</li>
+                    <li @click="showContact">Contact</li>
+                </ul>
+            </div>
+            <div class="contact" v-if="showcontact">
+                <li>Name  : Sanil Desemaru</li>
+                <li>Email : desemaruu77@gmail.com </li>
+                <li>Phone : 9860678131</li>
+                <ul class="icons" >
+                    <li><a href="https://twitter.com/sanil_desemaru"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="https://www.facebook.com/linas23"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="https://www.instagram.com/sanil_23/?hl=en"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="https://github.com/linas23"><i class="fab fa-github"></i></a></li>
+                    <li><a href=""><i class="fab fa-linux"></i></a></li>
+                </ul>
+                <div class="close" @click="removepopups">
+                    <li><i class="far fa-times-circle"></i></li>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="main.js"></script>
+</html>
