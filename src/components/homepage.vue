@@ -1,7 +1,7 @@
 <template>
     <div class="homepage" v-if="showhomepage">
         <div class="top">
-        <div class="right">
+        <div class="right form">
             <div class="card ">
                 <div class="card-title center">
                     Log In to <br>
@@ -43,9 +43,6 @@
         </div>
         <div class="details">
             <div class="aboutus">
-                <div class="bck">
-                    <img src="https://steemitimages.com/DQmdFEYymLvMqJUMHmdF8zvCo2kT65pKLrC9B5wFfMUkAzX/17834159_1507946962556946_1150372019156610703_o.jpg" alt="">
-                </div>
                 <div class="header center white-text">
                     <h2 >
                     Welcome to Rajamati Kumati 
@@ -66,8 +63,24 @@
                      </div>
                 </div>
             </div>
-            <div class="photos">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore saepe atque voluptatum, hic libero tempora earum aliquam ipsa quis quasi ullam, neque exercitationem vitae modi. Accusamus dolor molestiae sit ea!
+            <div class="rumpum ">
+                <div class="row">
+                    <div class="left side card">
+                        <img :src="rumpum1" alt="" >
+                    </div>
+                <div class="photos card cols 8 " :style="changecard" >
+                    <img :src="rumpum" alt="" @mouseenter="swap" @mouseleave="swapagain" :style="stylerumpum">
+                </div>
+                    <div class="right side card">
+                        <img :src="rumpum1r" alt="" >
+                    </div>
+
+                </div>
+            </div>
+            <div class="nanu">
+                <div class="container">
+                    <img :src="nanu" alt=""  >
+                </div>
             </div>
         </div>
     </div>
@@ -75,6 +88,10 @@
 <script>
 /* eslint-disable no-console */
 import {auth} from '@/firebase/init'
+// import heart from '@/assets/images/1200px-Heart_corazón.svg-3.png';
+import rumpum1 from '@/assets/images/rumpum1.jpg';
+import rumpum1r from '@/assets/images/rumpum1r.jpg';
+import nanu from '@/assets/images/nanu.jpg';
 export default {
     data(){
         return{
@@ -92,10 +109,26 @@ export default {
                     icon:"fab fa-4x fa-twitter",
                     href:'',
                 }
-            ]
+            ],
+            rumpum:rumpum1,
+            stylerumpum:{},
+            changecard:{},
+            rumpum1:rumpum1,
+            rumpum1r:rumpum1r,
+            nanu:nanu
         }
     },
     methods:{
+        swap(){
+            setTimeout(()=>{
+                this.rumpum = rumpum1r;
+            },500)
+        },
+        swapagain(){
+            setTimeout(()=>{
+                this.rumpum = rumpum1;
+            },500)
+        },
         signuppage(){
             this.showhomepage=false;
             // console.log('logging you up');
@@ -125,18 +158,19 @@ export default {
         background-image: url('../assets/images/IMG_20170209_123257-3.jpg');
         background-size: 50% 100% ;
         background-repeat: no-repeat;
-        background-position: fixed;
+        background-position: fixe5
         // background-position-x: 100px;
         // background-position-y: 80px;
     }
-    .right{
-        width: 50%;
+    .form{
+        min-width: 50%;
         height: 100%;
         padding: 100px;
         margin: 0  auto;
         // background: red;
         background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
         .card{
+            width: 100%;
             margin: 0px;
             height: 550px;
             box-shadow: 0px 0px 20px black;
@@ -161,35 +195,33 @@ export default {
 
     .details{
         width: 100%;
-        // height: 60vh;
+        // height:200vh;
         // background-image: linear-gradient(to top, #dfe9f3 0%, white 100%); 
-
         .aboutus{
-            // padding: 100px;
-            position: relative;
-            .bck{
-                width: 100%;
-                height: 100vh;
-                // z-index: -1;
-                img{
-                    width:100%;
-                    height: 100%;
-                    // opacity: 0.7;
-                }
-            }
+        width: 100%;
+        height: 100vh;
+        background-image: url("https://steemitimages.com/DQmdFEYymLvMqJUMHmdF8zvCo2kT65pKLrC9B5wFfMUkAzX/17834159_1507946962556946_1150372019156610703_o.jpg");
+        background-repeat: no-repeat;
+        background-size:cover;
+        // background-attachment: fixed;
+        background-blend-mode: darken;
+        // overflow: visible;
+        position: relative;
             .header{
-                transition: all 0.5s ease;
-
+                // height: 150vh;
+                transition: all 0.6s ease;
                 height: 100%;
                 position: absolute;
                 top: 0;
                 // text-align: center;
-                background: rgba($color: #817575, $alpha: 0.5);
+                // background: rgba($color: #817575, $alpha: 0.5);
                 h2{
                     padding: 20px;
                     font-size: 5rem;
                     font-family: 'Cinzel', serif;
                     font-weight: 900;
+                    margin-top: 30vh;
+
                 }
                 p{
                     // z-index:1;
@@ -215,11 +247,49 @@ export default {
                 }
             }
             .header:hover{
-                transition: all 0.5s ease;
-                background: rgba($color: #817575, $alpha: 0.2);
+                transition: all 0.6s ease;
+                background: black
             }
         }
    }
 
+    .rumpum{
+        // height: 100vh;
+        width: 100%;
+        .row{
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+        .card{
+            margin: 0 auto;
+            width: 600px;
+            padding: 50px;
+            margin-top: 50px;
+            img{
+                height: 100%;
+                width: 100%;
+            }
+
+        }
+        .side {
+            // padding: 10px ;
+            width:23vw;
+            height: 50vh;
+                padding: 20px;
+            img{
+                height:100%;
+                width:100%;
+            }
+        }
+    }
+
+    .nanu{
+        height: 100vh;
+        img{
+        padding: 50px 0px;
+            width: 100%;
+        }
+    }
 
 </style>

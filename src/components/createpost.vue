@@ -40,7 +40,7 @@
 
 <script>
 /* eslint-disable no-console */
-import {db} from '@/firebase/init'
+import {db,auth} from '@/firebase/init'
 import slugify from 'slugify'
 import moment from 'moment'
 export default {
@@ -50,6 +50,7 @@ export default {
             content:null,
             slug:null,
             time:null,
+            email:auth.currentUser.email
         }
     },
     methods:{
@@ -61,15 +62,21 @@ export default {
                 lower: true,         // result in lower case
             });
             console.log(this.slug);
-            db.collection("posts").doc(this.slug).set({
+            // name:auth.currentUser
+            
+            db.collection("posts").doc(this.email).set({
                 title:this.title,
                 content:this.content,
                 time:moment(Date.now()).format('llll'),
+                email:this.email
             }).then(()=>{
                 console.log('data sent.')
-                this.$router.push({name:'profile'});
+                this.$router.push({name:'profile',params:{email:this.email}});
             })
         }
+    },
+    created(){
+        console.log(auth.currentUser.email);
     }
 }
 </script>

@@ -42,12 +42,16 @@ export default {
         font-family: 'Mountains of Christmas', cursive;
         width:100%;
         background: linear-gradient(to right, #c31432, #240b36);
+        position: sticky;
+        top: 0;
+        z-index: 1;
         .left{
             font-weight: 900;
             padding: 0 100px;
             font-size: 2.8rem;
             letter-spacing: 0.3em;
         }
+
         ul{
             padding: 0 100px;
             li{
