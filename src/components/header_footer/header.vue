@@ -2,7 +2,9 @@
     <nav class="header" >
         <div class="nav-wrapper ">
             <div class=" brand-logo left">
-                RajamatiKumati
+                <router-link to="/home">
+                    RajamatiKumati
+                </router-link>
             </div>
             <div >
                 <ul id="nav-mobile" class="right hide-on-med-and-down" >

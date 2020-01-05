@@ -32,12 +32,16 @@
             </div>
             <div class="post" v-for="post in posts" :key="post.title">
                 <div class="card">
-                    {{post.id}}
                     <div class="card-title">
                         {{post.title}}
                     </div>
                     <div class="img">
-                        <img src="https://assets-cdn.kathmandupost.com/uploads/source/news/2019/lifestyle/INDRA_JATRA_LAST_DAY_09282018_06A9686.jpg" alt="">
+                        <a href="https://assets-cdn.kathmandupost.com/uploads/source/news/2019/lifestyle/INDRA_JATRA_LAST_DAY_09282018_06A9686.jpg" data-lightbox="image" :data-title="post.title">
+                            <img src="https://assets-cdn.kathmandupost.com/uploads/source/news/2019/lifestyle/INDRA_JATRA_LAST_DAY_09282018_06A9686.jpg" alt="">
+                        </a>
+                        <a href="https://www.nepalitimes.com/wp-content/uploads/2019/09/69867442_477637246149366_891990808171905024_n-2.jpg" data-lightbox="image" :data-title="post.title">
+                            <img src="https://www.nepalitimes.com/wp-content/uploads/2019/09/69867442_477637246149366_891990808171905024_n-2.jpg" alt="">
+                        </a>
                         <!-- <img src="" alt=""> -->
                     </div>
                     <div class="card-content">
@@ -129,24 +133,42 @@ export default {
     }
     .post{
         // height: 100vh;
-        max-width: 100%;
+        width: 100%;
+        cursor: pointer;
         .card{
             padding: 20px;
-            box-shadow: 00px 0px 15px black;
+            box-shadow: 0px 0px 15px black;
             margin:10px 0;
+            .card-title{
+            padding: 10px;
+            font-size: 1.8rem;
+            margin: 0px;
+            }
             .img{
                 // padding: 20px;
-                width: 100%;
+                width: 80%;
+                margin: 0 auto;
+                max-height: 500px;
+                overflow: hidden;
+                
                 img{
                     width: 100%;
                     height: 100%;
+                    cursor: pointer;
+                    transform: scale(1.1);
+                    overflow: none;
+                    transition: all 1s ease;
+                }
+                img:hover{
+                    transition: all 1s ease;
+                    transform: scale(1)
                 }
             }
             .card-content{
                 width: 100%;
-                padding: 10px;
+                // padding: 10px;
                 .time{
-                    font-size: 1.3rem;
+                    font-size: 16px;
                 }
                 .like{
                     // font-size: px;
@@ -159,9 +181,11 @@ export default {
                 }
                 .content{
                     p{
-                    padding: 5px;
+                    // padding: 0px 10px;
                     font-size: 1.5rem;
+                    font-weight: 500;
                     text-align:justify;
+                    word-wrap: break-word;
                     }
                 }
                 

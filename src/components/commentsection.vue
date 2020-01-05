@@ -9,6 +9,7 @@
               <label for="comment"  ></label>
               <input type="text" v-model="comment" placeholder="enter new comment">
           </div>
+          <div class="red-text"><span>{{feedback}}</span></div>
               <button class="btn" type="submit">
                     post   
               </button>
@@ -59,7 +60,8 @@ export default {
             user:auth.currentUser.uid,
             // email:auth.currentUser.email,
             comments:[],
-            commentsuccess:false
+            commentsuccess:false,
+            feedback:null
         }
     },
     methods:{
@@ -67,8 +69,10 @@ export default {
             console.log('adding comment')
             // console.log(this.comment)
             // console.log(this.user)
-            db.collection("comments").add({
-                'comment':this.comment,
+            if(this.comment){
+                this.feedback=null
+                db.collection("comments").add({
+                    'comment':this.comment,
                 'id':this.user,
                 'email':auth.currentUser.email,
                 'like':0,
@@ -80,6 +84,12 @@ export default {
                     this.commentsuccess=false;
                 },3000)
             })
+            }else{
+                this.feedback='please enter some comment first';
+                setTimeout(()=>{
+                    this.feedback=null
+                },2000)
+            }
         },
         starthis(){
             console.log('starring it')
@@ -87,12 +97,16 @@ export default {
         }
     },
     created(){
-        db.collection("comments").get().then((querySnapshot)=>{
+        db.collection("comments").orderBy("time").get().then((querySnapshot)=>{
                 // console.log(querySnapshot)
                 querySnapshot.forEach(doc=>{
                     // console.log(doc.data())
                     this.comments.push(doc.data())
                 })
+        }).then(()=>{
+            this.comments.reverse();
+        }).catch(err=>{
+            this.feedback=err;
         })
     }
 }
