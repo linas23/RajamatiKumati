@@ -49,8 +49,8 @@
                         </span>
                         </div>
                         <div class="content">
-                            <p>
-                                {{post.content}}
+                            <p v-html="post.content">
+                                <!-- {{}} -->
                             </p>
                         </div>
                         <hr>
@@ -129,7 +129,7 @@ export default {
     }
     .post{
         // height: 100vh;
-        width: 100%;
+        max-width: 100%;
         .card{
             padding: 20px;
             box-shadow: 00px 0px 15px black;
@@ -143,6 +143,7 @@ export default {
                 }
             }
             .card-content{
+                width: 100%;
                 padding: 10px;
                 .time{
                     font-size: 1.3rem;
@@ -157,9 +158,11 @@ export default {
                     color: red;
                 }
                 .content{
+                    p{
                     padding: 5px;
-                    font-size: 15px;
+                    font-size: 1.5rem;
                     text-align:justify;
+                    }
                 }
                 
             }

@@ -16,5 +16,6 @@ const firebaseConfig = {
 
 const db= firebase.firestore();
 const auth= firebase.auth();
+// const currentuser = firebase.auth.currentUser;
 
-export {db,auth};
+export {db,auth,};

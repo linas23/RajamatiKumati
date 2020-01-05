@@ -5,6 +5,7 @@ import signup from '@/components/auth/signup'
 import login from '@/components/auth/login'
 import profile from '@/components/profile'
 import create from '@/components/createpost'
+import main from '@/components/main'
 Vue.use(VueRouter)
 
 const routes = [
@@ -13,7 +14,8 @@ const routes = [
   {path:'/signup',name:'signup',component:signup},
   {path:'/login',name:'login',component:login},
   {path:'/profile',name:'profile',component:profile},
-  {path:'/create',name:'create',component:create}
+  {path:'/create',name:'create',component:create},
+  {path:'/posts',name:'posts',component:main}
   
 ];
 
