@@ -11,6 +11,7 @@ Vue.use(VueRouter)
 const routes = [
 
   {path:'/home',name:'homepage',component:homepage},
+  {path:'/',name:'homepage',component:homepage},
   {path:'/signup',name:'signup',component:signup},
   {path:'/login',name:'login',component:login},
   {path:'/profile',name:'profile',component:profile},

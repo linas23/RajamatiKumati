@@ -68,7 +68,7 @@
                     <div class="left side card">
                         <img :src="rumpum1" alt="" >
                     </div>
-                <div class="photos card cols 8 " :style="changecard" >
+                <div class="photos card  " :style="changecard" >
                     <img :src="rumpum" alt="" @mouseenter="swap" @mouseleave="swapagain" :style="stylerumpum">
                 </div>
                     <div class="right side card">
@@ -79,20 +79,53 @@
             </div>
             <div class="nanu">
                 <div class="container">
-                    <img :src="nanu" alt=""  >
+                    <img :src="nanu" alt="">
+                    <div class="btn-floating white pulse center" v-if="showheart" @click="heartthis">
+                        <span> <i class="far fa-5x fa-heart red-text"></i></span>
+                    </div>
                 </div>
             </div>
+            <div class="video ">
+                <div class="header center">
+                    <h2>Videos</h2>
+                </div>
+                <div class="videos">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/EkD7tkTiacQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/9GakoPmWIik?start=23" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Lj8YtvG3m8I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/5HpPviRXayo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <!-- <div>
+            <ul id="tabs-swipe-demo" class="tabs">
+                <li class="tab col s3"><a href="#test-swipe-1">Test 1</a></li>
+                <li class="tab col s3"><a class="active" href="#test-swipe-2">Test 2</a></li>
+                <li class="tab col s3"><a href="#test-swipe-3">Test 3</a></li>
+             </ul>
+            <div id="test-swipe-1" class="col s12 blue">Test 1</div>
+            <div id="test-swipe-2" class="col s12 red">Test 2</div>
+            <div id="test-swipe-3" class="col s12 green">Test 3</div>
+            </div> -->
+            <Footer></Footer>
         </div>
     </div>
 </template>
 <script>
+
+
 /* eslint-disable no-console */
 import {auth} from '@/firebase/init'
-// import heart from '@/assets/images/1200px-Heart_corazón.svg-3.png';
+import heart from '@/assets/images/love-heart.jpg';
 import rumpum1 from '@/assets/images/rumpum1.jpg';
 import rumpum1r from '@/assets/images/rumpum1r.jpg';
 import nanu from '@/assets/images/nanu.jpg';
+import Footer from '@/components/header_footer/footer'
+// import indrajatra from 'https://www.nepalitimes.com/wp-content/uploads/2019/09/69867442_477637246149366_891990808171905024_n-2.jpg';
+// import bhairab from 'http://assets-cdn.ekantipur.com/images/the-kathmandu-post/miscellaneous/15092016075754INDRA_JATRA_FESTIVAL_0009.jpg'
 export default {
+    components:{
+        Footer
+    },
     data(){
         return{
             showhomepage:true,
@@ -113,9 +146,17 @@ export default {
             rumpum:rumpum1,
             stylerumpum:{},
             changecard:{},
-            rumpum1:rumpum1,
-            rumpum1r:rumpum1r,
-            nanu:nanu
+            rumpum1,
+            rumpum1r,
+            nanu,
+            heart,
+            showheart:true,
+            videos:[
+                {
+                    src:'https://www.youtube.com/watch?v=9GakoPmWIik'
+                }
+            ]
+            
         }
     },
     methods:{
@@ -128,6 +169,14 @@ export default {
             setTimeout(()=>{
                 this.rumpum = rumpum1;
             },500)
+        },
+        heartthis(){
+            this.nanu = heart;
+            this.showheart=false;
+            setTimeout(() => {
+                this.nanu=nanu;
+                this.showheart=true;
+            }, 1000);
         },
         signuppage(){
             this.showhomepage=false;
@@ -266,6 +315,7 @@ export default {
             width: 600px;
             padding: 50px;
             margin-top: 50px;
+
             img{
                 height: 100%;
                 width: 100%;
@@ -275,8 +325,8 @@ export default {
         .side {
             // padding: 10px ;
             width:23vw;
-            height: 50vh;
-                padding: 20px;
+            height: 60vh;
+            padding: 20px;
             img{
                 height:100%;
                 width:100%;
@@ -286,10 +336,37 @@ export default {
 
     .nanu{
         height: 100vh;
+        position: relative;
         img{
-        padding: 50px 0px;
+            padding: 50px;
             width: 100%;
+            max-height: 100%;
+            transition: all 1s ease;
+        }
+        .pulse{
+            position: absolute;
+            bottom: 0;
+            right: 20%;
+            // padding: 5px;
         }
     }
-
+    .video{
+        height: 100vh;
+        .header{
+            h3{
+                margin: 0px;
+            }
+        }
+    }
+    .videos{
+        // margin: 70px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        iframe{
+            width: 40%;
+            padding: 10px;
+        }
+    }
 </style>
