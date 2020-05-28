@@ -1,92 +1,79 @@
 <template>
-  <v-layout
-    column
-    justify-center
-    align-center
-  >
-    <v-flex
-      xs12
-      sm8
-      md6
-    >
-      <div class="text-center">
-        <logo />
-        <vuetify-logo />
-      </div>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-          >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-flex>
-  </v-layout>
+  <div>
+    <!-- intro -->
+    <v-card height="100vh" class="blue-grey lighten-5" tile>
+      <v-card-title class="headline">Welcome to Rajamati Kumati</v-card-title>
+      <v-card-text>
+        Rajamati Kumati is the platform we intend to provide for sharing
+        photos within the community to help promoting the cultures, jatras,
+        anything worth saving for future generations. Here, you can share
+        information, any content related for providing the viewers the detailed
+        knowledge of the practices in our community.
+      </v-card-text>
+    </v-card>
+
+    <!-- featured posts -->
+    <v-container>
+      <div class="display-1">Featured posts</div>
+      <v-row justify="center">
+        <v-col cols="12" sm="6" md="4" v-for="(post,index) in featured" :key="index">
+          <postCard :post="post"></postCard>
+        </v-col>
+      </v-row>
+    </v-container>
+    <!-- any notice  -->
+
+    <!-- youtube videos -->
+    <v-container>
+      <v-row>
+        <v-col cols="12" sm="6" v-for="(src,index) in ytSource" :key="index">
+          <ytVideos :source="src"></ytVideos>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
-
+import ytVideos from "~/components/iframe.vue";
+import postCard from "~/components/postCard.vue";
 export default {
   components: {
-    Logo,
-    VuetifyLogo
+    ytVideos,
+    postCard
+  },
+  data() {
+    return {
+      ytSource: [
+        "https://www.youtube.com/embed/EkD7tkTiacQ",
+        "https://www.youtube.com/embed/9GakoPmWIik",
+        "https://www.youtube.com/embed/Lj8YtvG3m8I",
+        "https://www.youtube.com/embed/5HpPviRXayo"
+      ],
+      featured: [
+        {
+          id: 1,
+          img:
+            "https://thehimalayantimes.com/wp-content/uploads/2017/04/Sindoor-Jatra-450x320.jpg",
+          text: "lorem ipsum"
+        },
+        {
+          id: 2,
+          img:
+            "https://thehimalayantimes.com/wp-content/uploads/2017/04/Sindoor-Jatra-450x320.jpg",
+          text: "lorem ipsum"
+        },
+        {
+          id: 3,
+          img:
+            "https://thehimalayantimes.com/wp-content/uploads/2017/04/Sindoor-Jatra-450x320.jpg",
+          text: "lorem ipsum"
+        }
+      ]
+    };
   }
-}
+};
 </script>
+
+<style>
+</style>
