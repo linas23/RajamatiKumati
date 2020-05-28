@@ -44,13 +44,11 @@ import {auth} from '@/firebase/init'
 export default {
     created(){
         this.email=this.$route.params.email;
-        this.username=this.$route.params.username;
     },
     data(){
         return{
             email:'',
             password:'',
-            username:'',
             feedback:null
         }
     },
@@ -60,7 +58,7 @@ export default {
             auth.signInWithEmailAndPassword(this.email,this.password)
             .then(()=>{
                 console.log('logged in successfully');
-                this.$router.push({name:'profile',params:{username:this.username}});
+                this.$router.push({name:'profile'});
             })
             .catch(err=>{
                 console.log(err);

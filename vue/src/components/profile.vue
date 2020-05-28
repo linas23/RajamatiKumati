@@ -1,32 +1,26 @@
 <template>
     <div>
         <compHeader></compHeader>
-        <div class="card container profile">
-            <div class="left">
-
-                <div class="profileimg ">
-                    <i class="material-icons">person</i>
+        <profileheader></profileheader>
+        <!-- buttons -->
+        <div class="row center">
+            <div class="createnewpost">
+                    <div class="btn red " @click="createnewpost">
+                            create new post
+                    </div>
+            </div>
+            <div class="editprofile ">
+                <div class="btn" >
+                    <router-link to="editprofile" >
+                        <span class="white-text">edit profile </span>
+                    </router-link>
                 </div>
             </div>
-            <div class="right">
-
-            <div class="email">
-                Email: desemaru77@gmail.com
-            </div>
-            <div class="username">
-                Username: linas23
-            </div>
-            <div class="noofposts">
-                No of posts: 23
-            </div>
-            </div>
         </div>
-        <div class="createnewpost">
-                <div class="btn red" @click="createnewpost">
-                    create new post
-                </div>
+        <div v-if="!posts" class="center">
+            <h2>no posts yet</h2>
         </div>
-        <div class="posts container">
+        <div class="posts container" v-else>
             <div class="header">
                 <h3>posts</h3>
             </div>
@@ -58,7 +52,7 @@
                             </p>
                         </div>
                         <hr>
-                        <commentsection></commentsection>
+                        <commentsection :postid="post.id"></commentsection>
                     </div>
                 </div>
             </div>
@@ -68,31 +62,21 @@
 <script>
 /* eslint-disable no-console */
 
-import {db} from '@/firebase/init'
+import {db,auth} from '@/firebase/init'
 import commentsection from '@/components/commentsection.vue'
 import compHeader from '@/components/header_footer/header.vue'
+import profileheader from '@/components/profileheader'
 export default {
     data(){
         return{
             posts:[],
-            // email:auth.currentUser.email,
-            username:this.$route.params.username
+            uid:auth.currentUser.uid
         }
     },
     created(){
-        /* db.collection("posts").orderBy("time").get().then(querySnapshot=>{
-            console.log(querySnapshot.docs);
-            querySnapshot.forEach(doc=>{
-                console.log(doc.id);
-                console.log(doc.data())
-                this.posts.push(doc.data());
-            })
-        })
-        .then(()=>{
-                console.log('document submitted');
-                this.posts.reverse();
-            }) */
-        // console.log(auth.currentUser.email)
+        // var email = auth.currentUser.email;
+        console.log(auth.currentUser.email)
+        // this.userid= auth.currentUser.email
         db.collection("posts").orderBy("time").get()
         .then(querySnapshot=>{
             console.log(querySnapshot);
@@ -103,12 +87,13 @@ export default {
     },
     methods:{
         createnewpost(){
-            this.$router.push({name:'create'});
+            this.$router.push({name:'create',params:{'uid':this.uid}});
         }
     },
     components:{
         compHeader,
         commentsection,
+        profileheader
     }
 }
 </script>

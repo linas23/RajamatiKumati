@@ -12,13 +12,11 @@
                         <i class="material-icons">email</i>
                         <div class="input-field inline">
                             <input id="email" type="email" v-model="email"  placeholder="enter email">
-                            <!-- <label for="email">email</label>   -->
                         </div>
                         <br>
                         <i class="material-icons">lock</i>
                         <div class="input-field inline">
                             <input id="password" type="password" v-model="password" placeholder="enter password" >
-                            <!-- <label for="password">password</label> -->
                         </div>
                         <p v-if="feedback" v-html="feedback"></p>
                         <div class="card-actions">
@@ -96,16 +94,9 @@
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/5HpPviRXayo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
-            <!-- <div>
-            <ul id="tabs-swipe-demo" class="tabs">
-                <li class="tab col s3"><a href="#test-swipe-1">Test 1</a></li>
-                <li class="tab col s3"><a class="active" href="#test-swipe-2">Test 2</a></li>
-                <li class="tab col s3"><a href="#test-swipe-3">Test 3</a></li>
-             </ul>
-            <div id="test-swipe-1" class="col s12 blue">Test 1</div>
-            <div id="test-swipe-2" class="col s12 red">Test 2</div>
-            <div id="test-swipe-3" class="col s12 green">Test 3</div>
-            </div> -->
+
+            <featuredposts></featuredposts>
+            
             <Footer></Footer>
         </div>
     </div>
@@ -120,11 +111,13 @@ import rumpum1 from '@/assets/images/rumpum1.jpg';
 import rumpum1r from '@/assets/images/rumpum1r.jpg';
 import nanu from '@/assets/images/nanu.jpg';
 import Footer from '@/components/header_footer/footer'
+import featuredposts from '@/components/featuredposts'
 // import indrajatra from 'https://www.nepalitimes.com/wp-content/uploads/2019/09/69867442_477637246149366_891990808171905024_n-2.jpg';
 // import bhairab from 'http://assets-cdn.ekantipur.com/images/the-kathmandu-post/miscellaneous/15092016075754INDRA_JATRA_FESTIVAL_0009.jpg'
 export default {
     components:{
-        Footer
+        Footer,
+        featuredposts
     },
     data(){
         return{
@@ -180,7 +173,6 @@ export default {
         },
         signuppage(){
             this.showhomepage=false;
-            // console.log('logging you up');
             this.$router.push("/signup");
         },
         logmein(){

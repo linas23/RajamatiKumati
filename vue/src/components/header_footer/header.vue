@@ -2,7 +2,7 @@
     <nav class="header" >
         <div class="nav-wrapper ">
             <div class=" brand-logo left">
-                <router-link to="/home">
+                <router-link to="home">
                     RajamatiKumati
                 </router-link>
             </div>
@@ -30,8 +30,8 @@ export default {
                     linkTo:'posts'
                 },
                 {
-                    name:'search',
-                    linkTo:'search'
+                    name:'logout',
+                    linkTo:'home'
                 }
             ]
         }

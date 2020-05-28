@@ -48,7 +48,7 @@
                             </p>
                         </div>
                         <hr>
-                        <commentsection></commentsection>
+                        <commentsection :postid="post.id"></commentsection>
                     </div>
                     <hr>
             </div>
@@ -60,7 +60,6 @@
 <script>
 /* eslint-disable no-console */
 import compHeader from '@/components/header_footer/header'
-// import createpost from '@/components/createpost.vue'
 import commentsection from '@/components/commentsection.vue'
 import Nepal from '@/assets/images/Animated-Flag-Nepal.gif';
 import {db} from '@/firebase/init'
@@ -74,16 +73,19 @@ export default {
     components:{
         compHeader,
         commentsection,
-        // createpost
     },
     created(){
         db.collection("posts").get().then(querySnapshot=>{
-            // console.log(querySnapshot)
             querySnapshot.forEach(doc=>{
                 console.log(doc.data())
                 this.posts.push(doc.data());
             })
         })
+    },
+    methods:{
+        starthis(){
+            console.log('starring it')
+        }
     }
 }
 </script>

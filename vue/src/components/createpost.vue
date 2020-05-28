@@ -4,6 +4,7 @@
             <div class="card-title">
                 <h3>
                 Create a new post 
+                {{uid}}
                 </h3>
             </div>
             <div class="card-content">
@@ -46,6 +47,8 @@ import moment from 'moment'
 export default {
     data(){
         return{
+            // uid:this.$route.params.uid,
+            uid:auth.currentUser.uid,
             title:null,
             content:null,
             slug:null,
@@ -55,30 +58,26 @@ export default {
     },
     methods:{
         createthis(){
-            console.log(this.title,this.content)
             this.slug=slugify(this.title,{
                 replacement: '-',    // replace spaces with replacement
                 remove: null,        // regex to remove characters
                 lower: true,         // result in lower case
             });
-            console.log(this.slug);
-            // name:auth.currentUser
             
-            db.collection("posts").doc(this.email).set({
+            db.collection("posts").doc(this.slug).set({
                 title:this.title,
                 content:this.content,
                 time:moment(Date.now()).format('llll'),
-                email:this.email
+                email:this.email,
+                uid:this.uid
             }).then(()=>{
                 console.log('data sent.')
-                this.$router.push({name:'profile',params:{email:this.email}});
+                this.$router.push({name:'profile'});
             })
         }
     },
-    created(){
-        console.log(auth.currentUser.email);
-    }
 }
+
 </script>
 <style lang="scss">
     .createPost{
