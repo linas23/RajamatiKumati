@@ -1,5 +1,9 @@
 <template>
-  <div>hello admin profile</div>
+  <v-app>
+    <v-content>
+      <nuxt />
+    </v-content>
+  </v-app>
 </template>
 
 <script>

@@ -68,6 +68,9 @@ export default {
       error: colors.deepOrange.accent4,
     }
   },
+  router: {
+    props: true
+  },
   /*
   ** Build configuration
   */

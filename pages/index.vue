@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- intro -->
-    <v-card height="100vh" class="blue-grey lighten-5" tile>
+    <v-card height="100vh" tile flat class="text-center">
       <v-card-title class="headline">Welcome to Rajamati Kumati</v-card-title>
       <v-card-text>
         Rajamati Kumati is the platform we intend to provide for sharing
@@ -22,7 +22,9 @@
       </v-row>
     </v-container>
     <!-- any notice  -->
-
+    <div v-if="notice">
+      <noticeBoard :notice="notice"></noticeBoard>
+    </div>
     <!-- youtube videos -->
     <v-container>
       <v-row>
@@ -31,16 +33,27 @@
         </v-col>
       </v-row>
     </v-container>
+    <v-card height="222" tile class="warning d-flex justify-space-around align-center flex-column">
+      <v-card-title>Join the community</v-card-title>
+      <v-card-subtitle
+        class="text-center"
+      >Contribute to insure that the future generation is aware about the practices of our society.</v-card-subtitle>
+      <v-card-actions>
+        <v-btn to="/auth/signup" class="error darken-4">Join today</v-btn>
+      </v-card-actions>
+    </v-card>
   </div>
 </template>
 
 <script>
 import ytVideos from "~/components/iframe.vue";
 import postCard from "~/components/postCard.vue";
+import noticeBoard from "~/components/noticeBoard";
 export default {
   components: {
     ytVideos,
-    postCard
+    postCard,
+    noticeBoard
   },
   data() {
     return {
@@ -69,7 +82,14 @@ export default {
             "https://thehimalayantimes.com/wp-content/uploads/2017/04/Sindoor-Jatra-450x320.jpg",
           text: "lorem ipsum"
         }
-      ]
+      ],
+      notice: {
+        title: "lorem impsum",
+        description:
+          "slkdfjasdkfhdkjsghfkdjghjkdsfhkdsjlgfhfdkjghjdkfgslkdfjasdkfhdkjsghfkdjghjkdsfhkdsjlgfhfdkjghjdkfgslkdfjasdkfhdkjsghfkdjghjkdsfhkdsjlgfhfdkjghjdkfgslkdfjasdkfhdkjsghfkdjghjkdsfhkdsjlgfhfdkjghjdkfgslkdfjasdkfhdkjsghfkdjghjkdsfhkdsjlgfhfdkjghjdkfgslkdfjasdkfhdkjsghfkdjghjkdsfhkdsjlgfhfdkjghjdkfgslkdfjasdkfhdkjsghfkdjghjkdsfhkdsjlgfhfdkjghjdkfg",
+        date: "2076/02/16",
+        author: "jay nepal"
+      }
     };
   }
 };

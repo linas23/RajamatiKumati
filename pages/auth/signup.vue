@@ -1,9 +1,23 @@
 <template>
-  <div>signup page</div>
+  <compForm :task="task"></compForm>
 </template>
 
 <script>
-export default {};
+import compForm from "~/components/form";
+export default {
+  layout: "nolayout",
+  components: {
+    compForm
+  },
+  data() {
+    return {
+      task: {
+        title: "Sign up",
+        isLogin: false
+      }
+    };
+  }
+};
 </script>
 
 <style>
