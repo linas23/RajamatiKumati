@@ -38,6 +38,7 @@ export default {
   */
   buildModules: [
     '@nuxtjs/vuetify',
+    '@nuxt/components'
   ],
   /*
   ** Nuxt.js modules

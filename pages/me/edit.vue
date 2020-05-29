@@ -28,11 +28,7 @@
 </template>
 
 <script>
-import baseInput from "~/components/baseInput";
 export default {
-  components: {
-    baseInput
-  },
   data() {
     return {
       /* profile: {},
@@ -58,6 +54,7 @@ export default {
   },
   methods: {
     updateMe() {
+      //update the profile
       console.log(this.profile);
     }
   },
