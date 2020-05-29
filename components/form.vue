@@ -18,6 +18,14 @@
             counter="32"
             required
           ></v-text-field>
+          <v-text-field
+            v-if="!task.isLogin"
+            v-model="confirmPassword"
+            :rules="confirmPasswordRules"
+            label="confirm password"
+            counter="32"
+            required
+          ></v-text-field>
           <div class="text-center">
             <v-btn v-if="!submitting" @click="submit" class="error darken-3">{{task.title}}</v-btn>
             <v-btn v-else class="error darken-3">
@@ -50,7 +58,8 @@ export default {
     return {
       submitting: false,
       email: "linas@gmail.com",
-      password: "secret",
+      password: "secret1",
+      confirmPassword: "secret1",
       emailRules: [
         v => !!v || "E-mail is required",
         v => /.+@.+\..+/.test(v) || "Email must be valid"
@@ -58,6 +67,9 @@ export default {
       passwordRules: [
         v => !!v || "Password is required",
         v => (v && v.length > 6) || "Password must be greater than 6 characters"
+      ],
+      confirmPasswordRules: [
+        v => v === this.password || "Password do not match"
       ]
     };
   },
@@ -65,13 +77,32 @@ export default {
   methods: {
     submit() {
       if (this.$refs.myForm.validate()) {
-        console.log(true);
         this.submitting = true;
-        //reset form if signed in succesfully
-        this.$refs.myForm.reset();
+        this.task.isLogin ? this.login() : this.signup();
       } else {
         return false;
-        console.log(false);
+      }
+    },
+    async login() {
+      await this.$store.dispatch("auth/login", {
+        email: this.email,
+        password: this.password
+      });
+      console.log("logged in");
+    },
+    async signup() {
+      let user = await this.$store.dispatch("auth/signup", {
+        email: this.email,
+        password: this.password,
+        confirmPassword: this.confirmPassword
+      });
+      if (user) {
+        this.submitting = false;
+        setTimeout(() => {
+          this.$router.push("/auth/login");
+        }, 100);
+      } else {
+        this.$refs.myForm.reset();
       }
     }
   }

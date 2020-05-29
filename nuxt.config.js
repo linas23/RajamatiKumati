@@ -32,13 +32,15 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/credential.js'
   ],
   /*
   ** Nuxt.js dev-modules
   */
   buildModules: [
     '@nuxtjs/vuetify',
-    '@nuxt/components'
+    '@nuxt/components',
+    '@nuxtjs/dotenv'
   ],
   /*
   ** Nuxt.js modules
