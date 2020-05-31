@@ -4,7 +4,9 @@
       <img src="/Animated-Flag-Nepal.gif" style="height:66%" alt />
       <v-toolbar-title v-text="title" class="error--text header" />
       <v-spacer />
-
+      <!-- v-if="loggedIn" -->
+      <v-btn to="/post/create">Create new post</v-btn>
+      <v-spacer />
       <v-btn class="mx-2 success" router exact to="/post">Posts</v-btn>
       <v-btn class="mx-2" to="/auth/login" v-if="!loggedIn">login</v-btn>
       <v-btn class="mx-2" @click="logout" v-else>logout</v-btn>

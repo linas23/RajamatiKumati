@@ -1,9 +1,19 @@
 <template>
-  <div>welcome to rajamatikumati</div>
+  <v-container>
+    <div class="headline">welcome to rajamatikumati</div>
+    <div v-for="n in 11" :key="n">
+      <detailCard></detailCard>
+    </div>
+  </v-container>
 </template>
 
 <script>
-export default {};
+import detailCard from "~/components/detailCard";
+export default {
+  components: {
+    detailCard
+  }
+};
 </script>
 
 <style>

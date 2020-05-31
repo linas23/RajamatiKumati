@@ -1,9 +1,16 @@
 <template>
-  <div>edit post</div>
+  <v-container>
+    <compPostForm title="Edit Post"></compPostForm>
+  </v-container>
 </template>
 
 <script>
-export default {};
+import compPostForm from "~/components/postForm";
+export default {
+  components: {
+    compPostForm
+  }
+};
 </script>
 
 <style>

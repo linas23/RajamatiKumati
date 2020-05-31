@@ -27,13 +27,19 @@ export default {
   ** Global CSS
   */
   css: [
+    'quill/dist/quill.core.css',
+    // for snow theme
+    'quill/dist/quill.snow.css',
+    // for bubble theme
+    'quill/dist/quill.bubble.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
     '~/plugins/credential.js',
-    '~/plugins/vues.js'
+    '~/plugins/vue-notification.js',
+    { src: '~/plugins/vue-quill-editor.js', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules
