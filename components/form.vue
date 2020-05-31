@@ -84,24 +84,25 @@ export default {
       }
     },
     async login() {
-      await this.$store.dispatch("auth/login", {
-        email: this.email,
-        password: this.password
-      });
-      console.log("logged in");
+      try {
+        await this.$store.dispatch("auth/login", {
+          email: this.email,
+          password: this.password
+        });
+        this.$router.push("/post");
+      } catch (e) {
+        this.$refs.myForm.reset();
+      }
     },
     async signup() {
-      let user = await this.$store.dispatch("auth/signup", {
-        email: this.email,
-        password: this.password,
-        confirmPassword: this.confirmPassword
-      });
-      if (user) {
-        this.submitting = false;
-        setTimeout(() => {
-          this.$router.push("/auth/login");
-        }, 100);
-      } else {
+      try {
+        await this.$store.dispatch("auth/signup", {
+          email: this.email,
+          password: this.password,
+          confirmPassword: this.confirmPassword
+        });
+        this.$router.push("/auth/login");
+      } catch (e) {
         this.$refs.myForm.reset();
       }
     }

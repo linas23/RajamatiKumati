@@ -1,13 +1,21 @@
 <template>
   <v-app>
     <v-content>
+      <compNotification></compNotification>
+
       <nuxt />
     </v-content>
   </v-app>
 </template>
 
 <script>
-export default {};
+import compNotification from "~/components/notification";
+
+export default {
+  components: {
+    compNotification
+  }
+};
 </script>
 
 <style>

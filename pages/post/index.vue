@@ -1,5 +1,5 @@
 <template>
-  <div>featured post</div>
+  <div>welcome to rajamatikumati</div>
 </template>
 
 <script>

@@ -6,10 +6,11 @@
       <v-spacer />
 
       <v-btn class="mx-2 success" router exact to="/post">Posts</v-btn>
-      <v-btn class="mx-2" to="/auth/login">login</v-btn>
-      <v-btn class="mx-2" to="/auth/signup">sign up</v-btn>
+      <v-btn class="mx-2" to="/auth/login" v-if="!loggedIn">login</v-btn>
+      <v-btn class="mx-2" @click="logout" v-else>logout</v-btn>
     </v-app-bar>
     <v-content class="blue-grey lighten-5">
+      <compNotification></compNotification>
       <nuxt />
     </v-content>
 
@@ -25,6 +26,7 @@
 </template>
 
 <script>
+import compNotification from "~/components/notification";
 export default {
   data() {
     return {
@@ -44,6 +46,19 @@ export default {
       title: "Rajamati Kumati",
       links: ["Home", "About Us", "Team", "Services", "Blog", "Contact Us"]
     };
+  },
+  computed: {
+    loggenIn() {
+      return this.$store.state.auth.user;
+    }
+  },
+  components: {
+    compNotification
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("auth/logout");
+    }
   }
 };
 </script>

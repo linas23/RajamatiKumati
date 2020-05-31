@@ -32,7 +32,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/credential.js'
+    '~/plugins/credential.js',
+    '~/plugins/vues.js'
   ],
   /*
   ** Nuxt.js dev-modules

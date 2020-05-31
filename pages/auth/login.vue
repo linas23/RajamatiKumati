@@ -1,5 +1,7 @@
 <template>
-  <compForm :task="task"></compForm>
+  <div>
+    <compForm :task="task"></compForm>
+  </div>
 </template>
 
 <script>
