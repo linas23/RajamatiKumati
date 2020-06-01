@@ -4,65 +4,67 @@ const catchAsync = require('../utils/catchAsync');
 const slugify = require('slugify');
 
 
-exports.createPost = catchAsync(async(req,res,next)=>{
+exports.createPost = catchAsync(async (req, res, next) => {
 
-    const { title,description,summary,photos } = req.body;
-
-    const slug = slugify(title,{
-        replacement:'-',
-        lower:true
+    console.log(req.body, req.file)
+    const { title, description, tags, coverTitle } = req.body.post;
+    const { originalname } = req.file;
+    const slug = slugify(title, {
+        replacement: '-',
+        lower: true
     });
 
     const newPost = await Post.create({
         title,
         description,
-        summary,
+        tags,
         slug,
-        photos
+        coverImage: originalname,
+        coverTitle
     });
 
     res.status(201).json({
-        "status":"success",
+        "status": "success",
         newPost
     })
 });
 
-exports.getAllPosts = catchAsync(async(req,res,next)=>{
+exports.getAllPosts = catchAsync(async (req, res, next) => {
     console.log('getting all posts');
     const posts = await Post.find();
 
     res.status(200).send({
-        "status":"success",
+        "status": "success",
         posts
     })
 });
 
-exports.getPost = catchAsync(async(req,res,next)=>{
+exports.getPost = catchAsync(async (req, res, next) => {
     console.log('getting single post');
     const { slug } = req.params.slug;
-    const post = await Post.findOne({ slug :slug})
+    const post = await Post.findOne({ slug: slug })
 
     res.status(200).send({
-        "success":"success",
+        "success": "success",
         post
     })
 });
 
-exports.updatePost =catchAsync(async (req,res,next)=>{
+exports.updatePost = catchAsync(async (req, res, next) => {
     console.log('editing the post');
-    const { title, summary , description,slug} = req.body;
-    const post = await Post.findOneAndUpdate({title,summary,description,slug});
+    const { title, description, slug } = req.body;
+    const post = await Post.findOneAndUpdate({ title, description, slug });
     post.save();
     res.status(200).json({
-        status:"success",
+        status: "success",
         post
     })
 });
 
 
 
-exports.deletePost =catchAsync(async (req,res,next)=>{
+exports.deletePost = catchAsync(async (req, res, next) => {
     console.log('deleting the post');
-    await Post.findOneAndDelete({slug:req.params.slug});
+    await Post.findOneAndDelete({ slug: req.params.slug });
     res.status(400).send('post deleted')
 });

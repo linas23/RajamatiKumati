@@ -9,12 +9,20 @@ export const mutations = {
 
 }
 export const actions = {
-    async createPost(context, { post, }) {
-        console.log('create post', post)
-        let data = await this.$axios.$post('/post/createnewpost', {
-            post,
-        });
-        console.log(data)
+    async createPost(context, data) {
+
+        try {
+            console.log(data)
+            /* let data = await this.$axios.$post('/post/createnewpost', {
+                post,
+                coverImage
+            }
+            ); */
+            // console.log(data)
+        } catch (e) {
+            console.log('error ', e)
+        }
+
     },
     async editPost() {
         console.log('edit post')

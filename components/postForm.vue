@@ -1,26 +1,13 @@
 <template>
-  <v-card>
-    <form enctype="multipart/form-data">
-      <v-card-title>{{title}}</v-card-title>
-      <v-card-text>
-        <v-text-field label="Title" v-model="post.title" counter="33"></v-text-field>
-        <v-text-field label="Cover title" v-model="post.covertitle" counter="111"></v-text-field>
-        <v-file-input
-          multiple
-          v-model="file"
-          ref="file"
-          accept="image/*"
-          @change="onFileChange"
-          label="Cover image"
-        ></v-file-input>
-        <quill-editor ref="editor" v-model="post.description" :options="editorOption" />
-        <v-combobox v-model="post.tags" small-chips multiple label="Enter tags for the post"></v-combobox>
-      </v-card-text>
-      <v-card-actions>
-        <v-btn @click="createNew">Create</v-btn>
-      </v-card-actions>
-    </form>
-  </v-card>
+  <form ref="myForm" class="white pa-5" enctype="multipart/form-data">
+    <v-text-field label="Title" v-model="post.title" counter="33"></v-text-field>
+    <v-text-field label="Cover title" v-model="post.covertitle" counter="111"></v-text-field>
+    <v-file-input accept="image/*" v-model="file" label="Cover image"></v-file-input>
+    <!-- <input type="file" @change="onFileChange" /> -->
+    <quill-editor ref="editor" v-model="post.description" :options="editorOption" />
+    <v-combobox v-model="post.tags" small-chips multiple label="Enter tags for the post"></v-combobox>
+    <v-btn @click="createNew">Create</v-btn>
+  </form>
 </template>
 
 <script>
@@ -36,8 +23,7 @@ export default {
         title: "Bisket jatra",
         tags: ["bisket", "dashain"],
         description: "hello my content",
-        covertitle: "this is a cover title",
-        coverImage: null
+        covertitle: "this is a cover title"
       },
       file: null,
       editorOption: {
@@ -54,44 +40,21 @@ export default {
       }
     };
   },
-  // mounted() {
-  //   console.log(
-  //     "App inited, the Quill instance object is:",
-  //     this.$refs.editor.quill
-  //   );
-  //   setTimeout(() => {
-  //     this.content = "I was changed!";
-  //   }, 3000);
-  // },
+
   methods: {
-    onFileChange(e) {
-      const file = e;
-      this.coverImage = file;
-    },
     createNew() {
-      console.log(this.post);
-      this.$store.dispatch("post/createPost", { post: this.post });
+      let formData = new FormData(this.$refs.myForm);
+      formData.append("username", "Chris");
+      console.log(formData);
+      // formData.append("file", this.file);
+      // formData.append("post", this.post);
+      this.$store.dispatch("post/createPost", {
+        formData
+      });
     }
   }
 };
 </script>
 
-<style>
-/* #editor-container {
-  min-height: 375px;
-} */
-</style>
 
-/* @blur="onEditorBlur($event)"
-        @focus="onEditorFocus($event)"
-      @ready="onEditorReady($event) 
-    onEditorBlur(editor) {
-      console.log("editor blur!", editor);
-    },
-    onEditorFocus(editor) {
-      console.log("editor focus!", editor);
-    },
-    onEditorReady(editor) {
-      console.log("editor ready!", editor);
-    }, 
-    */
+

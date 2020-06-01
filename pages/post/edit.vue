@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <compPostForm title="Edit Post"></compPostForm>
+    <!-- <compPostForm title="Edit Post"></compPostForm> -->
   </v-container>
 </template>
 
