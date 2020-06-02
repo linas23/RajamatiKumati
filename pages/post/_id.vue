@@ -1,5 +1,18 @@
 <template>
   <div>
+    <v-card tile height="100vh">
+      <v-img
+        transition
+        height="100%"
+        cover
+        position="center center"
+        class="align-center text-center"
+        src="https://images.unsplash.com/photo-1586100345684-a135906ef03c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+      >
+        <v-card-text class="display-1 white--text">{{post.title}}</v-card-text>
+        <v-card-subtitle class="white--text">{{post.coverTitle}}</v-card-subtitle>
+      </v-img>
+    </v-card>
     <v-card tile>
       <v-img src="/texture_paper.svg">
         <v-container>
@@ -18,7 +31,7 @@
               </v-col>
             </v-row>
           </v-card-title>
-          <v-card-title>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea, quaerat expedita quidem voluptatem vitae quas unde quisquam facilis, molestias alias animi necessitatibus cumque.</v-card-title>
+          <v-card-title>{{post.description}}</v-card-title>
           <!-- images  -->
           <v-img
             src="https://live.staticflickr.com/3557/3459574190_7d2ce3085e_b.jpg"
@@ -86,6 +99,10 @@ export default {
         }
       ]
     };
+  },
+  async asyncData(ctx) {
+    let { post } = await ctx.store.dispatch("post/getPost", ctx.params.id);
+    return { post };
   }
 };
 </script>

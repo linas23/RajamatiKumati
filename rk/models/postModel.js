@@ -17,17 +17,16 @@ const postSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     },
-    "coverImage": {
-        type: String,
-        required: [true, "post must have an image"]
-    },
     "slug": String,
     "tags": {
         type: Array,
         required: true
     }
 })
-
+/* "coverImage": {
+    type: String,
+    required: [true, "post must have an image"]
+}, */
 
 const Post = new mongoose.model('Post', postSchema);
 

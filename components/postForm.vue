@@ -1,9 +1,9 @@
 <template>
-  <form ref="myForm" class="white pa-5" enctype="multipart/form-data">
+  <form ref="myForm" class="white pa-5">
     <v-text-field label="Title" v-model="post.title" counter="33"></v-text-field>
-    <v-text-field label="Cover title" v-model="post.covertitle" counter="111"></v-text-field>
-    <v-file-input accept="image/*" v-model="file" label="Cover image"></v-file-input>
-    <!-- <input type="file" @change="onFileChange" /> -->
+    <v-text-field label="Cover title" v-model="post.coverTitle" counter="111"></v-text-field>
+    <!-- <v-file-input accept="image/*" @change="onFileChange" label="Cover image"></v-file-input> -->
+    <!-- <input type="file" accept="image/*" @change="handleImage" /> -->
     <quill-editor ref="editor" v-model="post.description" :options="editorOption" />
     <v-combobox v-model="post.tags" small-chips multiple label="Enter tags for the post"></v-combobox>
     <v-btn @click="createNew">Create</v-btn>
@@ -22,10 +22,11 @@ export default {
       post: {
         title: "Bisket jatra",
         tags: ["bisket", "dashain"],
-        description: "hello my content",
-        covertitle: "this is a cover title"
+        description:
+          "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit ea maiores iusto aut quaerat. Aspernatur error recusandae dignissimos reprehenderit adipisci asperiores, eos, vel debitis eaque iure architecto, sint labore tenetur",
+        coverTitle: "this is a cover title"
       },
-      file: null,
+      coverImage: "",
       editorOption: {
         // Some Quill options...
         theme: "snow",
@@ -42,15 +43,21 @@ export default {
   },
 
   methods: {
+    /* handleImage(e) {
+      const selectedFile = e.target.files[0];
+      this.createBase64Image(selectedFile);
+    },
+    createBase64Image(fileObject) {
+      console.log(fileObject);
+      const reader = new FileReader();
+      reader.onload = e => {
+        this.coverImage = e.target.result;
+      };
+      reader.readAsBinaryString(fileObject);
+      console.log(this.coverImage);
+    }, */
     createNew() {
-      let formData = new FormData(this.$refs.myForm);
-      formData.append("username", "Chris");
-      console.log(formData);
-      // formData.append("file", this.file);
-      // formData.append("post", this.post);
-      this.$store.dispatch("post/createPost", {
-        formData
-      });
+      this.$store.dispatch("post/createPost", this.post);
     }
   }
 };

@@ -6,9 +6,9 @@ const slugify = require('slugify');
 
 exports.createPost = catchAsync(async (req, res, next) => {
 
-    console.log(req.body, req.file)
+    console.log(req.body)
     const { title, description, tags, coverTitle } = req.body.post;
-    const { originalname } = req.file;
+    // const { originalname } = req.file;
     const slug = slugify(title, {
         replacement: '-',
         lower: true
@@ -19,7 +19,6 @@ exports.createPost = catchAsync(async (req, res, next) => {
         description,
         tags,
         slug,
-        coverImage: originalname,
         coverTitle
     });
 
@@ -41,8 +40,8 @@ exports.getAllPosts = catchAsync(async (req, res, next) => {
 
 exports.getPost = catchAsync(async (req, res, next) => {
     console.log('getting single post');
-    const { slug } = req.params.slug;
-    const post = await Post.findOne({ slug: slug })
+    const { id } = req.params.id;
+    const post = await Post.findOne({ id: id })
 
     res.status(200).send({
         "success": "success",

@@ -1,8 +1,8 @@
 <template>
   <v-container>
     <div class="headline">welcome to rajamatikumati</div>
-    <div v-for="n in 11" :key="n">
-      <detailCard></detailCard>
+    <div v-for="(post,index) in posts" :key="index">
+      <detailCard :post="post"></detailCard>
     </div>
   </v-container>
 </template>
@@ -12,6 +12,11 @@ import detailCard from "~/components/detailCard";
 export default {
   components: {
     detailCard
+  },
+  async asyncData({ store }) {
+    let { posts } = await store.dispatch("post/getPosts");
+    console.log(posts);
+    return { posts };
   }
 };
 </script>
