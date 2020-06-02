@@ -21,6 +21,10 @@ const postSchema = new mongoose.Schema({
     "tags": {
         type: Array,
         required: true
+    },
+    "author": {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
 })
 /* "coverImage": {

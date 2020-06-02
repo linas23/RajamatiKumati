@@ -2,13 +2,13 @@
   <v-app>
     <v-app-bar fixed app>
       <img src="/Animated-Flag-Nepal.gif" style="height:66%" alt />
-      <v-toolbar-title v-text="title" class="error--text header" />
+      <v-toolbar-title v-html="title" class="error--text header" />
       <v-spacer />
       <v-btn to="/post/create">Create new post</v-btn>
       <v-spacer />
       <v-btn class="mx-2 success" router exact to="/post">Posts</v-btn>
-      <v-btn class="mx-2" to="/auth/login">login</v-btn>
-      <v-btn class="mx-2" @click="logout">logout</v-btn>
+      <v-btn class="mx-2" to="/auth/login" v-if="!loggedIn">login</v-btn>
+      <v-btn class="mx-2" @click="logout" v-else>logout</v-btn>
     </v-app-bar>
     <v-content class="blue-grey lighten-5">
       <compNotification></compNotification>
@@ -49,7 +49,7 @@ export default {
     };
   },
   computed: {
-    loggenIn() {
+    loggedIn() {
       return this.$store.state.auth.user;
     }
   },

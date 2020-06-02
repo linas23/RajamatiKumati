@@ -16,3 +16,14 @@ export const mutations = {
         state.notificationconfig = {}
     }
 }
+export const actions = {
+    /* async nuxtServerInit({ dispatch }, ctx) {
+        console.log(ctx.cookie)
+        await dispatch('getUserInitially')
+    },
+    getUserInitially({ commit }) {
+        let user = localStorage.getItem('rk_user_id')
+        console.log(user)
+
+    } */
+}

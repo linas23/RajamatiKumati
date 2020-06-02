@@ -98,6 +98,9 @@ export default {
         path: "/me/edit"
       });
     }
+  },
+ async asyncData({ store }) {
+   await store.dispatch("post/getMyPosts");
   }
 };
 </script>

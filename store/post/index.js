@@ -1,6 +1,5 @@
 
 export const state = () => {
-    post: 'hello'
 }
 export const getters = {
 
@@ -9,10 +8,14 @@ export const mutations = {
 
 }
 export const actions = {
-    async createPost({ commit }, post) {
+    async createPost({ commit, rootState }, post) {
         try {
+            // let { user } = rootState.auth; user.user._id
+            const userId = localStorage.getItem('rk_user_id')
+            console.log('user', userId)
             let data = await this.$axios.$post('/post/createnewpost', {
                 post,
+                author: userId
             }
             );
             commit('changeNotification', {
@@ -39,5 +42,13 @@ export const actions = {
     async getPosts() {
         // get all posts
         return await this.$axios.$get('/post')
+    },
+    getMyPosts({ commit, rootState }) {
+
+        let user = rootState.auth;
+        console.log(user)
+
+        /* let myPosts = this.$axios.$get('/post/getMyPosts', { id: user.user.id });
+        console.log(myPosts) */
     }
 }

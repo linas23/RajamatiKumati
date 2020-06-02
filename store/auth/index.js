@@ -1,14 +1,7 @@
 
 export const state = () => ({
-    profile: {
-        name: "linas",
-        email: "desemaru77@gmail.com",
-        location: "bhaktapur",
-        bio: "loremipsudjfskloremipsudjfskloremipsudjfskloremipsudjfsk",
-        website: "https://portfolio.com",
-        image: "https://cdn.vuetifyjs.com/images/john.jpg"
-    },
-    user: null
+    profile: {},
+    user: {}
 })
 export const mutations = {
     SET_PROFILE: (state, profile) => {
@@ -16,6 +9,8 @@ export const mutations = {
         state.profile = profile
     },
     SET_USER(state, user) {
+        console.log('i am here')
+        console.log(user)
         state.user = user
     },
     REMOVE_USER(state) {
@@ -50,6 +45,7 @@ export const actions = {
             let user = await this.$axios.$post('/user/login', {
                 email, password
             })
+            console.log(user)
             commit('SET_USER', user);
             console.log(user)
 

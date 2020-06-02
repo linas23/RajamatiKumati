@@ -12,10 +12,7 @@ const dotenv = require('dotenv');
 
 dotenv.config({ path: './config.env' });
 const app = require('./app');
-app.use((req, res, next) => {
-  req.header('Access-Control-Allow-Origin', '*');
-  next();
-});
+
 /* const DB = process.env.DATABASE.replace(
   '<PASSWORD>',
   process.env.DATABASE_PASSWORD
