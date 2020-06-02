@@ -15,9 +15,6 @@
               <v-icon>mdi-map-marker</v-icon>
               {{profile.location}}
             </v-card-text>
-            <v-card-text>
-              <v-icon>mdi-calendar-month</v-icon>Joined 2020/05/23
-            </v-card-text>
           </div>
           <v-card-text>website :{{profile.website}}</v-card-text>
           <v-card-text>Bio :{{profile.bio}}</v-card-text>
@@ -99,8 +96,8 @@ export default {
       });
     }
   },
- async asyncData({ store }) {
-   await store.dispatch("post/getMyPosts");
+  async asyncData({ store }) {
+    await store.dispatch("post/getMyPosts");
   }
 };
 </script>

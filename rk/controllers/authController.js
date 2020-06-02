@@ -64,3 +64,4 @@ exports.login = catchAsync(async (req, res, next) => {
     createSignToken(user, 200, req, res);
 
 });
+

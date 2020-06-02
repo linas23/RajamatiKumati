@@ -5,6 +5,7 @@ const cors = require('cors')
 
 const userRouter = require('./routes/userRoute');
 const postRouter = require('./routes/postRoute');
+const profileRouter = require("./routes/profileRoute")
 const globalErrorHandler = require('./controllers/errorController');
 
 const app = express();
@@ -21,13 +22,14 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 const multer = require('multer');
 const multerStorage = multer.memoryStorage();
 const upload = multer({ dest: './uploads', storage: multerStorage });
-
+const profileUpload = multer({ dest: './avatar' })
 app.get('/', (req, res, next) => {
     // res.status(200).send(console.log('hello'));
 })
 
 app.use('/api/v1/user', userRouter)
 app.use('/api/v1/post', upload.single('coverImage'), postRouter)
+app.use('/api/v1/profile', profileUpload.single('avatar'), profileRouter)
 
 
 app.use(globalErrorHandler);
