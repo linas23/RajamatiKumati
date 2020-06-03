@@ -101,7 +101,7 @@ export default {
           password: this.password,
           confirmPassword: this.confirmPassword
         });
-        this.$router.push("/auth/login");
+        this.$router.push("/me/create");
       } catch (e) {
         this.$refs.myForm.reset();
       }

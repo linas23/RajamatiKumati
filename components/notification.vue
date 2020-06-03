@@ -23,9 +23,6 @@ export default {
       });
     }
   },
-  created() {
-    // this.removeNotification();
-  },
   methods: {
     changeNotification() {
       this.$store.commit("changeNotification", {
@@ -33,11 +30,6 @@ export default {
         type: Math.floor(Math.random() * 10) % 2 === 0 ? "success" : "error",
         num: Math.random()
       });
-    },
-    removeNotification() {
-      setTimeout(() => {
-        this.$store.commit("removeNotification");
-      }, 4000);
     }
   }
 };

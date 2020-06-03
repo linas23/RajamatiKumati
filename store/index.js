@@ -12,9 +12,7 @@ export const mutations = {
             msg, type
         }
     },
-    removeNotification(state) {
-        state.notificationconfig = {}
-    }
+
 }
 export const actions = {
     /* async nuxtServerInit({ dispatch }, ctx) {

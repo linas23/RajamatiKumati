@@ -21,7 +21,8 @@ const profileSchema = new mongoose.Schema({
         type: String
     },
     "avatar": {
-        type: String
+        type: String,
+        default: 'https://images.unsplash.com/photo-1500653504950-5a0179eeea8b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80'
     },
     "userid": {
         type: mongoose.Schema.Types.ObjectId,

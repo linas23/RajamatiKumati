@@ -1,17 +1,19 @@
 
 export const state = () => ({
-    profile: {},
-    user: {}
+    user: null
 })
+export const getters = {
+    userid(state) {
+        return state.user.user.id;
+    }
+}
 export const mutations = {
-    SET_PROFILE: (state, profile) => {
-        console.log({ ...profile })
-        state.profile = profile
-    },
+
     SET_USER(state, user) {
         console.log('i am here')
         console.log(user)
-        state.user = user
+        state.user = { ...user }
+        console.log(state.user)
     },
     REMOVE_USER(state) {
         state.user = null
@@ -23,11 +25,14 @@ export const actions = {
             let user = await this.$axios.$post('/user/signup', {
                 email, password, confirmPassword
             })
-            console.log(user)
             let notice = {
-                msg: 'you are signed up successfully.',
+                msg: 'you are signed up and logged in successfully.',
                 type: 'success'
             }
+            commit('SET_USER', user);
+
+            localStorage.setItem('rk_user_id', user.user.id)
+
             commit('changeNotification', notice, { root: true })
             return user;
         } catch (e) {
@@ -45,9 +50,7 @@ export const actions = {
             let user = await this.$axios.$post('/user/login', {
                 email, password
             })
-            console.log(user)
             commit('SET_USER', user);
-            console.log(user)
 
             localStorage.setItem('rk_user_id', user.user.id)
 

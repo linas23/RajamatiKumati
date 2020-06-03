@@ -4,16 +4,16 @@
       <v-row align="center">
         <v-col cols="12" md="2">
           <v-avatar size="111" class="ml-10">
-            <img class="avatar" :src="profile.image" />
+            <img class="avatar" :src="profile.avatar" />
           </v-avatar>
         </v-col>
         <v-col cols="12" md="8" class="py-0">
-          <v-card-text class="headline pt-4">{{profile.name}}</v-card-text>
+          <v-card-text class="headline pt-4">{{profile.username}}</v-card-text>
           <div class="d-flex flex-sm-row justify-space-between flex-column">
             <v-card-text>Email : {{profile.email}}</v-card-text>
             <v-card-text>
               <v-icon>mdi-map-marker</v-icon>
-              {{profile.location}}
+              {{profile.address}}
             </v-card-text>
           </div>
           <v-card-text>website :{{profile.website}}</v-card-text>
@@ -50,15 +50,6 @@ export default {
   },
   data() {
     return {
-      profile: {
-        name: "linas",
-        email: "desemaru77@gmail.com",
-        location: "bhaktapur",
-        bio: "loremipsudjfskloremipsudjfskloremipsudjfskloremipsudjfsk",
-        website: "https://portfolio.com",
-        image: "https://cdn.vuetifyjs.com/images/john.jpg"
-      },
-
       yourPosts: [
         {
           id: 1,
@@ -88,7 +79,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations({ setProfile: "auth/SET_PROFILE" }),
+    ...mapMutations({ setProfile: "profile/SET_PROFILE" }),
     editMe() {
       this.setProfile(this.profile);
       this.$router.push({
@@ -97,7 +88,10 @@ export default {
     }
   },
   async asyncData({ store }) {
-    await store.dispatch("post/getMyPosts");
+    let { data: profile } = await store.dispatch("profile/getProfile");
+    // await store.dispatch("post/getMyPosts");
+    console.log(profile);
+    return { profile };
   }
 };
 </script>

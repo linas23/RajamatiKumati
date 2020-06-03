@@ -5,12 +5,11 @@ const express = require('express')
 
 exports.createProfile = catchAsync(async (req, res, next) => {
     console.log('creating profile')
-    console.log(req.file)
+    console.log(req.body)
     let { username, email, address, website, bio, userid } = req.body;
-    let { originalname: avatar } = req.file
-    console.log(avatar)
+    // avatar = req.file.filename + '.' + req.file.mimetype.split("/")[1]
     let profile = await Profile.create({
-        username, email, website, bio, address, avatar, userid
+        username, email, website, bio, address, userid
     })
     res.status(201).json({
         "status": "success",
@@ -19,10 +18,11 @@ exports.createProfile = catchAsync(async (req, res, next) => {
 });
 exports.updateProfile = catchAsync(async (req, res, next) => {
     console.log('updating profile')
-    let { username, email, address, website, bio, avatar } = req.body;
+    let { username, email, address, website, bio, _id } = req.body;
     let profile = await Profile.findByIdAndUpdate({ _id }, {
-        username, email, website, bio, address, avatar
+        username, email, website, bio, address,
     }, { new: true })
+    await profile.save()
     res.status(201).json({
         "status": "success",
         data: profile
