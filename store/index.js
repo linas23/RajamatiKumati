@@ -1,5 +1,5 @@
 export const state = () => ({
-    notificationconfig: {}
+    notificationconfig: {},
 })
 export const getters = {
     notification(state) {

@@ -31,7 +31,8 @@ export default {
     // for snow theme
     'quill/dist/quill.snow.css',
     // for bubble theme
-    'quill/dist/quill.bubble.css'
+    'quill/dist/quill.bubble.css',
+    'aos/dist/aos.css'
   ],
   /*
   ** Plugins to load before mounting the App

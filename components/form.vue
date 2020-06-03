@@ -1,32 +1,48 @@
 <template>
   <v-card height="100vh" tile class="primary d-flex justify-center align-center">
-    <v-card width="400" class="mx-auto">
-      <v-card-title>Welcome {{task.isLogin ? 'back' : ''}} to Rajamati kumati</v-card-title>
+    <v-card
+      width="400"
+      class="mx-auto"
+      data-aos="slide-up"
+      data-aos-duration="777"
+      data-aos-offset="111"
+    >
+      <v-card-text
+        class="py-10 text-center headline grey lighten-2"
+      >Welcome {{task.isLogin ? 'back' : ''}} to Rajamati kumati</v-card-text>
       <v-card-text>
         <v-form ref="myForm" lazy-validation>
           <v-text-field
             v-model="email"
             :rules="emailRules"
+            hint="Email Address"
             label="Email Address"
             counter="32"
             required
+            solo
           ></v-text-field>
           <v-text-field
             v-model="password"
             :rules="passwordRules"
-            label="password"
+            hint="Password"
             counter="32"
             required
+            label="Password"
+            type="password"
+            solo
           ></v-text-field>
           <v-text-field
+            type="password"
             v-if="!task.isLogin"
             v-model="confirmPassword"
             :rules="confirmPasswordRules"
-            label="confirm password"
+            label="Confirm Password"
+            hint="confirm password"
             counter="32"
+            solo
             required
           ></v-text-field>
-          <div class="text-center">
+          <div :class="[classObject,'d-flex text-center py-5 flex-column align-center']">
             <v-btn v-if="!submitting" @click="submit" class="error darken-3">{{task.title}}</v-btn>
             <v-btn v-else class="error darken-3">
               <v-progress-circular indeterminate size="23" width="2" color="white"></v-progress-circular>
@@ -47,7 +63,11 @@
 </template>
 
 <script>
+import AOS from "aos";
 export default {
+  mounted() {
+    AOS.init();
+  },
   props: {
     task: {
       type: Object,
@@ -57,9 +77,9 @@ export default {
   data() {
     return {
       submitting: false,
-      email: "linas@gmail.com",
-      password: "secret1",
-      confirmPassword: "secret1",
+      email: "",
+      password: "",
+      confirmPassword: "",
       emailRules: [
         v => !!v || "E-mail is required",
         v => /.+@.+\..+/.test(v) || "Email must be valid"
@@ -70,7 +90,11 @@ export default {
       ],
       confirmPasswordRules: [
         v => v === this.password || "Password do not match"
-      ]
+      ],
+      classObject: {
+        green: this.task.isLogin,
+        orange: !this.task.isLogin
+      }
     };
   },
 

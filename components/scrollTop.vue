@@ -25,7 +25,7 @@ export default {
     onScroll(e) {
       if (typeof window === "undefined") return;
       const top = window.pageYOffset || e.target.scrollTop || 0;
-      this.scroll = top > 20;
+      this.scroll = top > 33;
     },
     toTop() {
       this.$vuetify.goTo(0);

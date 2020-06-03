@@ -4,7 +4,7 @@
       <img src="/Animated-Flag-Nepal.gif" style="height:66%" alt />
       <v-toolbar-title v-html="title" class="error--text header" />
       <v-spacer />
-      <v-btn to="/post/create">Create new post</v-btn>
+      <v-btn to="/post/create" v-if="loggedIn">Create new post</v-btn>
       <v-spacer />
       <v-btn class="mx-2 success" router exact to="/post">Posts</v-btn>
       <v-btn class="mx-2" to="/auth/login" v-if="!loggedIn">login</v-btn>
@@ -17,7 +17,13 @@
 
     <v-footer class="footer primary" absolute app>
       <v-row justify="center" no-gutters>
-        <v-btn v-for="link in links" :key="link" text class="my-2 white--text">{{ link }}</v-btn>
+        <v-btn
+          v-for="link in links"
+          :key="link"
+          text
+          class="my-2 white--text"
+          :to="link.to"
+        >{{ link.text }}</v-btn>
         <v-col class="py-4 text-center white--text" cols="12">
           <span class>Rajamati Kumati&copy; {{new Date().getFullYear()}}</span>
         </v-col>
@@ -45,7 +51,10 @@ export default {
         }
       ],
       title: "Rajamati Kumati",
-      links: ["Home", "About Us", "Team", "Services", "Blog", "Contact Us"]
+      links: [
+        { text: "About Us", to: "/aboutus" },
+        { text: "Contact Us", to: "/contact" }
+      ]
     };
   },
   computed: {

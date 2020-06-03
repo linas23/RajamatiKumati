@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card tile height="100vh">
+    <v-card tile height="100vh" data-aos="zoom-in">
       <v-img
         height="100%"
         cover
@@ -14,7 +14,7 @@
     </v-card>
     <!-- detail -->
     <v-img src="/texture_paper.svg">
-      <v-container>
+      <v-container data-aos="slide-up">
         <v-row align="center">
           <v-col cols="1" class="text-center">
             <!-- speed dial links -->
@@ -55,11 +55,15 @@ import speedDial from "~/components/speedDial";
 import compScroll from "~/components/scrollTop";
 import postCard from "~/components/postCard";
 import moment from "moment";
+import AOS from "aos";
 export default {
   components: {
     speedDial,
     compScroll,
     postCard
+  },
+  mounted() {
+    AOS.init();
   },
   data() {
     return {

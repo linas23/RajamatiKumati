@@ -48,6 +48,7 @@ export default {
   components: {
     postCard
   },
+  middleware: "isLoggedIn",
   data() {
     return {
       yourPosts: [

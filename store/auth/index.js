@@ -20,20 +20,19 @@ export const mutations = {
     }
 }
 export const actions = {
-    async signup({ commit }, { email, password, confirmPassword }) {
+    async signup({ commit, dispatch }, { email, password, confirmPassword }) {
         try {
             let user = await this.$axios.$post('/user/signup', {
                 email, password, confirmPassword
             })
+            commit('SET_USER', user);
+            localStorage.setItem('rk_user_id', user.user.id)
             let notice = {
                 msg: 'you are signed up and logged in successfully.',
                 type: 'success'
             }
-            commit('SET_USER', user);
+            dispatch('notification', notice)
 
-            localStorage.setItem('rk_user_id', user.user.id)
-
-            commit('changeNotification', notice, { root: true })
             return user;
         } catch (e) {
             console.log('error occured 👀👀👀')
@@ -41,11 +40,11 @@ export const actions = {
                 msg: 'something went wrong.  Cannot sign in at the moment',
                 type: 'error'
             }
-            commit('changeNotification', notice, { root: true })
+            dispatch('notification', notice)
             throw e
         }
     },
-    async login({ commit }, { email, password }) {
+    async login({ commit, dispatch }, { email, password }) {
         try {
             let user = await this.$axios.$post('/user/login', {
                 email, password
@@ -58,18 +57,23 @@ export const actions = {
                 msg: 'you are logged in successfully.',
                 type: 'success'
             }
-            commit('changeNotification', notice, { root: true })
+            dispatch('notification', notice)
+
+
         } catch (e) {
             let notice = {
                 msg: 'something went wrong. Cannot log in at the moment',
                 type: 'error'
             }
-            commit('changeNotification', notice, { root: true })
+            dispatch('notification', notice)
             throw e
         }
     },
     logout({ commit }) {
         commit('REMOVE_USER')
         localStorage.setItem('rk_user_id', '')
+    },
+    notification({ commit }, notice) {
+        commit('changeNotification', notice, { root: true })
     }
 }
